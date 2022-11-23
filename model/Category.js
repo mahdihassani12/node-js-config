@@ -24,6 +24,5 @@ const Category = sequelize.define("categories",
     }
   );
 
-  Post.belongsToMany(Category, { as: 'Post', through: { model: Post_Category }, foreignKey: 'category_id' });
-  
+  Category.belongsToMany(Post, { as: 'Post', through: { model: Post_Category }, foreignKey: 'post_id' });
   module.exports = Category;

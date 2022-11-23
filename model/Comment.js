@@ -35,19 +35,6 @@ const Comment = sequelize.define("comments",
     }
   );
   
-  Post.hasMany(Comment, {
-    foreignKey: {
-      name: "post_id",
-      allowNull: false,
-      as: "user"
-    }
-  });
-
-  User.hasMany(Comment, {
-    foreignKey: {
-      name: "user_id",
-      allowNull: false,
-      as: "user"
-    }
-  });
+  Comment.belongsTo(Post);
+  Comment.belongsTo(User);
   module.exports = Comment;

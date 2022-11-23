@@ -9,16 +9,31 @@
 </head>
 <body>
     
-    <form id="login" class="register">
+    <form id="login" class="register" method="post" action="/registerCheckout">
         <h1>Register</h1>
         <fieldset id="inputs">
-            <input id="username" type="text" placeholder="Username" required>   
-            <input id="email"    type="email" placeholder="Email" required>   
-            <input id="password" type="password" placeholder="Password" required>
+            <input id="username" 
+                   type="text"
+                   name="username" 
+                   placeholder="Username" 
+                   required
+                />   
+            <input id="email"    
+                   type="email"
+                   name="email" 
+                   placeholder="Email" 
+                   required 
+                />   
+            <input id="password" 
+                   type="password" 
+                   placeholder="Password" 
+                   required 
+                   name="password"
+                />
         </fieldset>
         <fieldset id="actions">
             <input type="submit" id="submit" value="Register">
-            <a href="">Login</a>
+            <a href="/login">Login</a>
         </fieldset>
     </form>
 
