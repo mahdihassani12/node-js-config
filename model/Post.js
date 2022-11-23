@@ -1,4 +1,4 @@
-const { DataTypes } = require('sequelize');
+const { Sequelize , DataTypes } = require('sequelize');
 const sequelize = require("../utils/db");
 const User = require("./User");
 const Comment = require("./Comment");
@@ -29,6 +29,16 @@ const Post = sequelize.define("posts",
         user_id:{
             type: DataTypes.INTEGER,
             allowNull: false
+        },
+        created_at:{
+            allowNull: false,
+            type: Sequelize.DATE, 
+            defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
+        },
+        updated_at:{
+            allowNull: false,
+            type: Sequelize.DATE, 
+            defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
         }
     },
     {
@@ -39,13 +49,13 @@ const Post = sequelize.define("posts",
   );
 
   // Association
-  Post.belongsTo(User);  
-  Post.belongsToMany(Category, { as: 'Post', through: { model: Post_Category }, foreignKey: 'category_id' });
-  Post.hasMany(Comment, {
-    foreignKey: {
-      name: "post_id",
-      allowNull: false,
-      as: "user"
-    }
-  });
+  // Post.belongsTo(User);  
+  // Post.belongsToMany(Category, { as: 'Post', through: { model: Post_Category }, foreignKey: 'post_id' });
+  // Post.hasMany(Comment, {
+  //   foreignKey: {
+  //     name: "post_id",
+  //     allowNull: false,
+  //     as: "user"
+  //   }
+  // });
   module.exports = Post;

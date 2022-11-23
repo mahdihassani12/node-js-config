@@ -1,4 +1,4 @@
-const { DataTypes } = require('sequelize');
+const { Sequelize , DataTypes } = require('sequelize');
 const sequelize = require("../utils/db");
 
 const Post_Category = sequelize.define("posts_categories", 
@@ -16,6 +16,16 @@ const Post_Category = sequelize.define("posts_categories",
         category_id:{
             type: DataTypes.INTEGER,
             allowNull: false
+        },
+        created_at:{
+            allowNull: false,
+            type: Sequelize.DATE, 
+            defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
+        },
+        updated_at:{
+            allowNull: false,
+            type: Sequelize.DATE, 
+            defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
         }
     },
     {

@@ -16,13 +16,26 @@ exports.loginCheckout = (req, res, next) => {
 };
 
 // Process Register
-exports.registerCheckout = (req, res, next) => {
+exports.registerCheckout = async  (req, res, next) => {
     
     const username = req.body.username;
     const email = req.body.email;
     const password = req.body.password;
 
-    console.log("Username :", username, " Email : ", email, " Password : ", password);
+    const response = await user.create(
+            { 
+                email   : email, 
+                password: password,
+                username: username
+            }
+        );
+
+        if(response){
+            res.redirect('/login');
+        }else{
+            res.redirect('/');
+        }
+        
 
 };
 
