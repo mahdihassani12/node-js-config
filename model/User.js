@@ -47,20 +47,22 @@ const User = sequelize.define("users",
     }
   );
 
-  // User.hasMany(Post, {
-  //   foreignKey: {
-  //     name: "user_id",
-  //     allowNull: false,
-  //     as: "user"
-  //   }
-  // });
+  User.associate = models => {
+        User.hasMany(models.Post, {
+            foreignKey: {
+                name: "user_id",
+                allowNull: false,
+                as: "user"
+            }
+        });
+        
+        User.hasMany(models.Comment, {
+            foreignKey: {
+                name: "user_id",
+                allowNull: false,
+                as: "user"
+            }
+        });
+  }
 
-  // User.hasMany(Comment, {
-  //   foreignKey: {
-  //     name: "user_id",
-  //     allowNull: false,
-  //     as: "user"
-  //   }
-  // });
-  
   module.exports = User;

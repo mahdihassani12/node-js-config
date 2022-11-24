@@ -49,13 +49,19 @@ const Post = sequelize.define("posts",
   );
 
   // Association
-  // Post.belongsTo(User);  
-  // Post.belongsToMany(Category, { as: 'Post', through: { model: Post_Category }, foreignKey: 'post_id' });
-  // Post.hasMany(Comment, {
-  //   foreignKey: {
-  //     name: "post_id",
-  //     allowNull: false,
-  //     as: "user"
-  //   }
-  // });
+  Post.associate = models => {
+    Post.belongsTo(models.User);  
+
+    Post.belongsToMany(models.Category, { as: 'Post', through: { model: Post_Category }, foreignKey: 'post_id' });
+    
+    Post.hasMany(models.Comment, {
+        foreignKey: {
+        name: "post_id",
+        allowNull: false,
+        as: "user"
+        }
+    });
+
+  }
+  
   module.exports = Post;
